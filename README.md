@@ -8,4 +8,4 @@ A2 Laravel will automaticaly stop it the inputed data will just go back form
 
 Q3 Your success message is displayed from the layout, which renders on every page. Explain why it does not appear on every page.
  
-A3 The succes message only appears if a object it added, the message is only a flash message so when a user refresh it, it dissapears.
+A3 The succes message only appears if a object it added, the message is only a flash message so when a user refresh it, it dissapears.      
