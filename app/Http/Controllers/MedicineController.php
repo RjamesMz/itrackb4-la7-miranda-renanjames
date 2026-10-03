@@ -14,10 +14,10 @@ class MedicineController extends Controller
 
     private function saveMedicines(array $medicines){
 
-        file_put_contents(storage_path('app/medicnes.json'),
+        file_put_contents(storage_path('app/medicines.json'),
         json_encode($medicines, JSON_PRETTY_PRINT)
         );
-         
+
     }
 
     public function index(Request $request)
@@ -54,7 +54,7 @@ class MedicineController extends Controller
      */
     public function create()
     {
-        //
+        return view('medicines.create');
     }
 
     /**
@@ -62,8 +62,22 @@ class MedicineController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $medicines = $this->medicines();
+       $id = max(array_keys($medicines)) + 1;
+
+       $medicines[$id] = [
+        'id' => $id,
+        'name' => $request->input('name'),
+        'stock' => $request->input('stock'),
+        'expiry_date' => $request->input('expiry_date'),
+        'type' => $request->input('type'),
+        'is_available' => $request->input('is_available') === 'true',
+       ];
+
+       $this->saveMedicines($medicines);
+       return view('medicines.create', ['success' => true]);
     }
+
 
     /**
      * Display the specified resource.
