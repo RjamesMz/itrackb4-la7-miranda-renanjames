@@ -41,7 +41,7 @@
 
         <div class="mb-3">
             <label class="form-label" for="available">Status</label>
-            <select name="vailable" class="form-select">
+            <select name="available" class="form-select">
                 <option value="">Medicine Status</option>
                 <option value="true">Available</option>
                 <option value="false">Not Available</option>

@@ -62,6 +62,15 @@ class MedicineController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+
+        'name' => 'required|max:100',
+        'stock' => 'required|in:lowstock,full',
+        'expiry_date' => 'required',
+        'type' => 'required|max:100|in:Capsule,Tablet,Liquid,Syrup',
+        'available' => 'required| in:true,false'
+        ]);
+
        $medicines = $this->medicines();
        $id = max(array_keys($medicines)) + 1;
 
