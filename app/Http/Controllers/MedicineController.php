@@ -17,6 +17,7 @@ class MedicineController extends Controller
         file_put_contents(storage_path('app/medicnes.json'),
         json_encode($medicines, JSON_PRETTY_PRINT)
         );
+         
     }
 
     public function index(Request $request)
