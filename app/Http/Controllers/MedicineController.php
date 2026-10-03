@@ -49,7 +49,6 @@ class MedicineController extends Controller
 
         }
        
-    
          return view('medicines.index',
          ['medicines' => $medicines,
           'type' => $type, 'stock' => $stock]);
