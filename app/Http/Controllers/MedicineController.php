@@ -6,25 +6,19 @@ use Illuminate\Http\Request;
 
 class MedicineController extends Controller
 {
-     private function medicines() 
-    {
-        return [
-        1 => ['id' => 1, 'name' => 'Paracetamol', 'stock' => 'Full', 'expiry_date' => '2027-03-15', 'type' => 'Tablet', 'is_available' => true],
-        2 => ['id' => 2, 'name' => 'Amoxicillin', 'stock' => 'Full', 'expiry_date' => '2026-11-20', 'type' => 'Capsule', 'is_available' => true],
-        3 => ['id' => 3, 'name' => 'Losartan', 'stock' => 'Lowstock', 'expiry_date' => '2026-12-25', 'type' => 'Tablet', 'is_available' => true],
-        4 => ['id' => 4, 'name' => 'Cetirizine', 'stock' => 'Lowstock', 'expiry_date' => '2026-09-30', 'type' => 'Tablet', 'is_available' => true],
-        5 => ['id' => 5, 'name' => 'Losartan', 'stock' => 'Full', 'expiry_date' => '2027-01-10', 'type' => 'Tablet', 'is_available' => true],
-        6 => ['id' => 6, 'name' => 'Ibuprofen', 'stock' => 'Full', 'expiry_date' => '2027-02-28', 'type' => 'Tablet', 'is_available' => true],
-        7 => ['id' => 7, 'name' => 'Amlodipine', 'stock' => 'Full', 'expiry_date' => '2027-05-10', 'type' => 'Tablet', 'is_available' => true],
-        8 => ['id' => 8, 'name' => 'Omeprazole', 'stock' => 'Lowstock', 'expiry_date' => '2026-10-15', 'type' => 'Capsule', 'is_available' => false],
-        9 => ['id' => 9, 'name' => 'Metformin', 'stock' => 'Full', 'expiry_date' => '2027-04-20', 'type' => 'Tablet', 'is_available' => true],
-        10 => ['id' => 10, 'name' => 'Salbutamol', 'stock' => 'Full', 'expiry_date' => '2027-06-30', 'type' => 'Syrup', 'is_available' => true],
+    private function medicines(){
+        $path = storage_path('app/medicines.json');
 
-        ];
+        return json_decode(file_get_contents($path), true);
     }
-    /**
-     * Display a listing of the resource.
-     */
+
+    private function saveMedicines(array $medicines){
+
+        file_put_contents(storage_path('app/medicnes.json'),
+        json_encode($medicines, JSON_PRETTY_PRINT)
+        );
+    }
+
     public function index(Request $request)
     {
         $type = $request->query('type', 'all');
@@ -48,7 +42,7 @@ class MedicineController extends Controller
             }
 
         }
-       
+
          return view('medicines.index',
          ['medicines' => $medicines,
           'type' => $type, 'stock' => $stock]);
@@ -77,7 +71,7 @@ class MedicineController extends Controller
     {
 
         $medicines = $this->medicines();
-        
+
             if(!isset($medicines[$id]))
             {
 
@@ -133,7 +127,7 @@ class MedicineController extends Controller
 
     }
 
-    
+
 }
 
 

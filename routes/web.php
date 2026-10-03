@@ -16,5 +16,5 @@ Route::get('/medicines/filter/{type?}', function($type = 'all'){
 
 
 Route::resource('medicines', MedicineController::class)->only([
-    'index', 'show'
+    'index', 'show', 'create', 'store'
 ]);
