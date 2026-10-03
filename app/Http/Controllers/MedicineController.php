@@ -65,7 +65,7 @@ class MedicineController extends Controller
         $validated = $request->validate([
 
         'name' => 'required|max:100',
-        'stock' => 'required|in:lowstock,full',
+        'stock' => 'required|in:Lowstock,Full',
         'expiry_date' => 'required',
         'type' => 'required|max:100|in:Capsule,Tablet,Syrup',
         'available' => 'required| in:true,false'
@@ -84,7 +84,8 @@ class MedicineController extends Controller
        ];
 
        $this->saveMedicines($medicines);
-       return view('medicines.create', ['success' => true]);
+       return redirect()->route('medicines.index')
+       ->with('success', 'Medicine added succesfully');
     }
 
 
