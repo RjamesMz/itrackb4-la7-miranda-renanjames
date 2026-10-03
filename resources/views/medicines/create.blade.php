@@ -12,40 +12,56 @@
 
         <div class="mb-3">
             <label class="form-label" for="name">Medicine Name</label>
-            <input type="text" name="name" class="form-control">
+            <input type="text" name="name" class="form-control" value="{{old('name')}}">
+            @error('name')
+        <div class="invalid-feedback d-block" >{{$message}}</div>
+        @enderror
         </div>
+        
 
         <div class="mb-3">
             <label class="form-label" for="stock">Stock</label>
             <select name="stock" class="form-select">
                 <option value="">Stock</option>
-                <option value="Full">Full Stock</option>
-                <option value="LowStock">Low Stock</option>
+                <option value="Full" @selected(old('stock') == 'Full')>Full Stock</option>
+                <option value="Lowstock"  @selected(old('stock') == 'Lowstock')>Low Stock</option>
             </select>
+            @error('stock')
+        <div class="invalid-feedback d-block" >{{$message}}</div>
+        @enderror
         </div>
 
         <div class="mb-3">
             <label class="form-label" for="expiry_date">Expiry Date</label>
-              <input type="date" name="expiry_date">
+              <input type="date" name="expiry_date" value="{{old('expiry_date')}}">
+              @error('expiry_date')
+        <div class="invalid-feedback d-block" >{{$message}}</div>
+        @enderror
         </div>
 
         <div class="mb-3">
             <label class="form-label" for="type">Type</label>
             <select name="type" class="form-select">
                 <option value="">Type of Medicine</option>
-                <option value="Liquid">Liquid</option>
-                <option value="Tablet">Tablet</option>
-                <option value="Capsule">Capsule</option>
+                <option value="Syrup" @selected(old('type') == 'Syrup')>Liquid</option>
+                <option value="Tablet" @selected(old('type') == 'Tablet')>Tablet</option>
+                <option value="Capsule" @selected(old('type') == 'Capsule')>Capsule</option>
             </select>
+            @error('type')
+        <div class="invalid-feedback d-block" >{{$message}}</div>
+        @enderror
         </div>
 
         <div class="mb-3">
-            <label class="form-label" for="available">Status</label>
+            <label class="form-label" for="available">Available</label>
             <select name="available" class="form-select">
                 <option value="">Medicine Status</option>
-                <option value="true">Available</option>
-                <option value="false">Not Available</option>
+                <option value="true" @selected(old('available') == 'true')>Yes</option>
+                <option value="false"  @selected(old('available') == 'false')>No</option>
             </select>
+         @error('available')
+        <div class="invalid-feedback d-block" >{{$message}}</div>
+        @enderror
         </div>
 
 

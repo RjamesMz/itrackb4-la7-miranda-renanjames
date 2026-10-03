@@ -67,7 +67,7 @@ class MedicineController extends Controller
         'name' => 'required|max:100',
         'stock' => 'required|in:lowstock,full',
         'expiry_date' => 'required',
-        'type' => 'required|max:100|in:Capsule,Tablet,Liquid,Syrup',
+        'type' => 'required|max:100|in:Capsule,Tablet,Syrup',
         'available' => 'required| in:true,false'
         ]);
 
